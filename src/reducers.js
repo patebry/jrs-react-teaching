@@ -9,4 +9,13 @@ function users(state = [], action) {
   }
 }
 
-export default combineReducers({ users })
+function selectedUser(state = null, action) {
+  switch (action.type) {
+    case 'SET_SELECTED_USER':
+      return action.payload
+    default:
+      return state
+  }
+}
+
+export default combineReducers({ users, selectedUser })
