@@ -39,7 +39,7 @@ class EditUser extends React.Component {
     if (this.props.open && !prevProps.open) {
       this.setState(this.props.selectedUser)
     }
-    console.log(prevProps, this.props)
+    // console.log(prevProps, this.props)
   }
 
   render() {
@@ -88,7 +88,7 @@ class EditUser extends React.Component {
               <Button onClick={this.close} color="secondary" variant="outlined">
                 Close
               </Button>
-              <Button color="primary" variant="contained">
+              <Button onClick={this.submit} color="primary" variant="contained">
                 Save
               </Button>
             </DialogActions>
