@@ -44,7 +44,6 @@ class EditUser extends React.Component {
 
   render() {
     const user = this.props.selectedUser
-    const { first_name, last_name, phone, email, birthday } = this.state
     return (
       <Dialog open={this.props.open} onClose={this.close}>
         {user ? (
@@ -53,36 +52,17 @@ class EditUser extends React.Component {
               <h2>Edit User</h2>
             </DialogContent>
             <DialogContent>
-              <TextField
-                label={'First Name'}
-                value={first_name || ''}
-                fullWidth
-                onChange={e => this.updateState('first_name', e)}
-              />
-              <TextField
-                label={'Last Name'}
-                value={last_name || ''}
-                fullWidth
-                onChange={e => this.updateState('last_name', e)}
-              />
-              <TextField
-                label={'Phone'}
-                value={phone || ''}
-                fullWidth
-                onChange={e => this.updateState('phone', e)}
-              />
-              <TextField
-                label={'Email'}
-                value={email || ''}
-                fullWidth
-                onChange={e => this.updateState('email', e)}
-              />
-              <TextField
-                label={'Birthday'}
-                value={birthday || ''}
-                fullWidth
-                onChange={e => this.updateState('birthday', e)}
-              />
+              {Object.keys(defaultState).map(stateField => {
+                return (
+                  <TextField
+                    key={stateField}
+                    label={stateField.replace('_', ' ')}
+                    value={this.state[stateField] || ''}
+                    fullWidth
+                    onChange={e => this.updateState(stateField, e)}
+                  />
+                )
+              })}
             </DialogContent>
             <DialogActions>
               <Button onClick={this.close} color="secondary" variant="outlined">

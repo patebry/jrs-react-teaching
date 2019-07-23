@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { listUsers } from './db'
-import { Card, CardContent, CardActions, Button } from '@material-ui/core'
+import Card from './card'
 import EditUser from './editUser'
 
 class App extends Component {
@@ -15,27 +15,7 @@ class App extends Component {
       <>
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {users.map(user => {
-            return (
-              <Card style={{ margin: '16px' }} key={user.id}>
-                <CardContent>
-                  {user.first_name} {user.last_name}
-                </CardContent>
-                <CardActions>
-                  <Button
-                    onClick={e =>
-                      this.props.dispatch({
-                        type: 'SET_SELECTED_USER',
-                        payload: user
-                      })
-                    }
-                    color="primary"
-                    variant="contained"
-                  >
-                    Edit
-                  </Button>
-                </CardActions>
-              </Card>
-            )
+            return <Card user={user} key={user.id} />
           })}
         </div>
         <EditUser />
